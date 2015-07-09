@@ -1,34 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/mainCtrl.js"></script>
+</head>
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+<body ng-app="starter" ng-controller="mainCtrl">
+  <ion-pane>
+    <ion-header-bar class="bar-stable">
+      <h4 class="title">Calculator</h4>
+    </ion-header-bar>
+    <ion-content>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+     <div class="row numberDisplay"><div>{{ display }}</div></div>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="squared()">x&sup2;</a>
+            <a class="button" ng-click="sin()">sin</a>
+            <a class="button" ng-click="cos()">cos</a>
+            <a class="button" ng-click="tan()">tan</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="sqrt(num)">√</a>
+            <a class="button" ng-click="sinminus()">sin&#x207b;&sup1;</a>
+            <a class="button" ng-click="cosminus()">cos&#x207b;&sup1;</a>
+            <a class="button" ng-click="tanminus()">tan&#x207b;&sup1;</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="number('1')">1</a>
+            <a class="button" ng-click="number('2')">2</a>
+            <a class="button" ng-click="number('3')">3</a>
+            <a class="button" ng-click="divide()">&#47;</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="number('4')">4</a>
+            <a class="button" ng-click="number('5')">5</a>
+            <a class="button" ng-click="number('6')">6</a>
+            <a class="button" ng-click="multiply()">&#42;</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="number('7')">7</a>
+            <a class="button" ng-click="number('8')">8</a>
+            <a class="button" ng-click="number('9')">9</a>
+            <a class="button" ng-click="add()">&#43;</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="number('0')">0</a>
+            <a class="button" ng-click="point()">&#46;</a>
+            <a class="button" ng-click="clear()">clear</a>
+            <a class="button" ng-click="subtract()">&#45;</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="button-bar">
+            <a class="button" ng-click="calculate()">&#61;</a>
+          </div>
+        </div>
+  <!-- Scoped variables displayed for debugging -->
+    <p>pendingOperation: {{pendingOperation}}
+        <br>lastOperation: {{lastOperation}}
+        <br>runningTotal: {{runningTotal}}
+        <br>pendingValue: {{pendingValue}}
+        <br>newNumber: {{newNumber}}</p>
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+     <p><em>lovingly stolen from http://jsfiddle.net/GF3Xg/</em></p>
+    </ion-content>
+  </ion-pane>
+</body>
+
 </html>
