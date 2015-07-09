@@ -2,28 +2,21 @@ angular.module('starter', [])
   .controller('mainCtrl', ['$scope', function ($scope) {
     $scope.message = "hello";
     $scope.display = 0;
-
       // Used to evaluate whether to start a new number
     // in the display and when to concatenate
     $scope.newNumber = true;
-
     // Holds the pending operation so calculate knows
     // what to do
     $scope.pendingOperation = null;
-
     // Bound to the view to display a token indicating
     // the current operation
     $scope.operationToken = "";
-
     // Holds the running total as numbers are added/subtracted
     $scope.runningTotal = null;
-
     // Holds the number value of the string in the display output
     $scope.pendingValue = null;
-
     // Tells calculate what to do when the equals buttons is clicked repeatedly
     $scope.lastOperation = null;
-
     // Constants
      var ADD = "adding";
     var SUBTRACT = "subtracting";
@@ -33,7 +26,6 @@ angular.module('starter', [])
     var MULTIPLY_TOKEN = "*";
        var DIVIDE = "dividing";
     var DIVIDE_TOKEN = "/";
-
     /*
      * Runs every time a number button is clicked.
      * Updates the output display and sets
@@ -48,7 +40,6 @@ angular.module('starter', [])
         }
         $scope.pendingValue = toNumber($scope.display);
     };
-
     /*
      * Runs every time the add button is clicked.
      * If a number has been entered before the add
@@ -74,7 +65,6 @@ angular.module('starter', [])
         $scope.newNumber = true;
         $scope.pendingValue = null;
     };
-
     /*
      * Runs every time the subtract button is clicked.
      * If a number has been entered before the subtract
@@ -90,6 +80,7 @@ angular.module('starter', [])
                 $scope.runningTotal -= $scope.pendingValue;
             } else if ($scope.runningTotal && $scope.pendingOperation == ADD) {
                 $scope.runningTotal += $scope.pendingValue;
+              console.log('line 83, subtraction', runningTotal, $scope.pendingValue);
             } else {
                 $scope.runningTotal = $scope.pendingValue;
             }
@@ -100,15 +91,11 @@ angular.module('starter', [])
         $scope.newNumber = true;
         $scope.pendingValue = null;
     };
-
-
-
 /*multiplication function*/
-
         $scope.multiply = function () {
         if ($scope.pendingValue) {
             if ($scope.runningTotal && ($scope.pendingOperation == MULTIPLY)) {
-                $scope.runningTotal * $scope.pendingValue;
+                $scope.runningTotal *= $scope.pendingValue;
             } else {
                 $scope.runningTotal = $scope.pendingValue;
             }
@@ -120,11 +107,11 @@ angular.module('starter', [])
         $scope.pendingValue = null;
     };
     /*division function*/
-
             $scope.divide = function () {
         if ($scope.pendingValue) {
             if ($scope.runningTotal && ($scope.pendingOperation == DIVIDE)) {
-                $scope.runningTotal / $scope.pendingValue;
+                $scope.runningTotal /= $scope.pendingValue;
+              console.log('line 113, division', $scope.runningTotal, $scope.pendingValue);
             } else {
                 $scope.runningTotal = $scope.pendingValue;
             }
@@ -135,7 +122,6 @@ angular.module('starter', [])
         $scope.newNumber = true;
         $scope.pendingValue = null;
     };
-
     /*
      * Runs when the equals (=) button is clicked.
      * If a number has been entered before the equals
@@ -157,6 +143,13 @@ angular.module('starter', [])
         } else if ($scope.pendingOperation == SUBTRACT) {
             $scope.runningTotal -= $scope.pendingValue;
             $scope.lastOperation = SUBTRACT;
+        } else if ($scope.pendingOperation == MULTIPLY) {
+            $scope.runningTotal *= $scope.pendingValue;
+            $scope.lastOperation = MULTIPLY;
+        } else if ($scope.pendingOperation == DIVIDE) {
+            $scope.runningTotal /= $scope.pendingValue;
+            $scope.lastOperation = DIVIDE;
+
         } else {
             if ($scope.lastOperation) {
                 if ($scope.lastOperation == ADD) {
@@ -181,7 +174,6 @@ angular.module('starter', [])
         $scope.pendingOperation = null;
         $scope.pendingValue = null;
     };
-
     /*
      * Initializes the appropriate values
      * when the clear button is clicked.
@@ -192,7 +184,6 @@ angular.module('starter', [])
         $scope.pendingOperation = null;
         setOutput("0");
     };
-
     /*
      * Updates the display output and resets the
      * newNumber flag.
@@ -201,7 +192,6 @@ angular.module('starter', [])
         $scope.display = outputString;
         $scope.newNumber = true;
     };
-
     /*
      * Sets the operation token to let the user know
      * what the pendingOperation is
@@ -219,7 +209,6 @@ angular.module('starter', [])
             $scope.operationToken = "";
         }
     };
-
     /* Converts a string to a number so we can
      * perform calculations. Simply multiplies
      * by one to do so
@@ -231,29 +220,21 @@ angular.module('starter', [])
         }
         return result;
     };
-
-
-
     // var values = [];
     //var result = 0; /* cumulative result of calculations to date */
-
 /*
     $scope.Math = window.Math;
-
     $scope.number = function (num) {
       values.push(num);
       $scope.display = values.join('') * 1;
     };
-
     $scope.clear = function () {
       $scope.display = 0;
       values = [];
     };
-
 $scope.immediate = function (op) {
  perform immedite operation and disply result
 var b = parseFloat($scope.display);
-
 switch (op) {
 case 'sin':
 b = '' + Math.sin(b);
@@ -264,15 +245,8 @@ break;
 case 'tan':
 b = '' + Math.tan(b);
 break;
-
 }
 $scope.display = '' + b;
 }
 */
-
-
-
-
-
-
 }]);
